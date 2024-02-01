@@ -1,0 +1,40 @@
+# Zach Allred Class: 6015
+# Assignment 1
+# All - Checks if ClassEXE is up to date
+# ClassEXE - generates executable from cpp and h files
+# run - Runs the executable
+# clean - removes all files.
+# printM - prints macro values
+
+CXX=c++
+CFLAGS= -std=c++17
+CXXSOURCE= main.cpp cmdline.cpp Expr.cpp
+HEADERS = cmdline.h Expr.h catch.h
+
+.PHONY: all
+
+all:msdscript
+
+msdscript: $(CXXSOURCE) $(HEADERS)
+	$(CXX) $(CFLAGS) $(CXXSOURCE) -o msdscript
+
+.PHONY: run
+
+run:msdscript
+	./msdscript
+	
+.PHONY: clean
+
+clean:
+	rm -f *.o *.out msdscript
+	
+.PHONY: printM
+
+printM:
+	echo $(CXXSOURCE)
+	echo $(HEADERS)
+	echo $(CXX)
+	echo $(CFLAGS)
+
+test: msdscript
+	./msdscript --test
